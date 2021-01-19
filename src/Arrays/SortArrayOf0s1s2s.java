@@ -8,21 +8,28 @@ public class SortArrayOf0s1s2s {
     }
 
     public static void sort012(int[] a, int n){
-        int[] counter = new int[3];
-        for (int i = 0; i < n; i++) {
-            counter[a[i]]++;
-        }
-        int num = 0;
-        int j = 0;
-        while(true) {
-            for (int i = 0; i < counter[num]; i++) {
-                a[j] = num;
-                j++;
+      // Dutch National Flag Algorithm
+        int low = 0, mid = 0, high = n - 1, temp;
+
+        while (mid <= high) {
+            switch (a[mid]) {
+                case 0:
+                    temp = a[low];
+                    a[low] = a[mid];
+                    a[mid] = temp;
+                    low++;
+                    mid++;
+                    break;
+                case 1:
+                    mid++;
+                    break;
+                case 2:
+                    temp = a[mid];
+                    a[mid] = a[high];
+                    a[high] = temp;
+                    high--;
+                    break;
             }
-            if (num!=2)
-                num++;
-            else
-                break;
         }
     }
 }
