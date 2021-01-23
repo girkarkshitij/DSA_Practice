@@ -5,19 +5,15 @@ public class MaximumSubarray {
     }
 
     /**
-     * Kadane's Algorithm
+     * Kadane's Algorithm 
      */
-    public static int maxSubarraySum(int[] arr, int n) {
-        int sum = 0;
-        int max = Integer.MIN_VALUE;
-
-        for (int i = 0; i < n; i++) {
-            sum += arr[i];
-            if (sum < 0)
-                sum = 0;
-            max = Math.max(max, sum);
+    public static int maxSubarraySum(int[] nums, int n) {
+        int max = nums[0];
+        int current_max = nums[0];
+        for(int i = 1 ; i<nums.length; i++){
+            current_max = Math.max(nums[i], nums[i]+current_max);
+            max = Math.max(max, current_max);
         }
-
         return max;
     }
 }
