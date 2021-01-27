@@ -12,18 +12,18 @@ public class MergeIntervals {
     public static int[][] merge(int[][] intervals) {
         Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
         ArrayList<int[]> merged = new ArrayList<>();
-        int[] current = new int[2];
-        current[0] = intervals[0][0];
-        current[1] = intervals[0][1];
+        int start = intervals[0][0];
+        int end = intervals[0][1];
         for (int[] temp : intervals) {
-            if (temp[0] <= current[1]) {
-                current[1] = Math.max(temp[1], current[1]);
+            if (temp[0] <= end) {
+                end = Math.max(temp[1], end);
             } else {
-                merged.add(current);
-                current = temp;
+                merged.add(new int[]{start, end});
+                start = temp[0];
+                end = temp[1];
             }
         }
-        merged.add(current);
+        merged.add(new int[]{start, end});
         return merged.toArray(new int[merged.size()][]);
     }
 }
