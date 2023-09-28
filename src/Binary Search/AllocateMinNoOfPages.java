@@ -4,7 +4,7 @@ public class Solution {
             return -1;
         int lo = A[0], hi = A[0];
         for(int i=1; i<A.length; i++){
-            lo = Math.min(lo, A[i]);
+            lo = Math.max(lo, A[i]);
             hi += A[i];
         }
         
